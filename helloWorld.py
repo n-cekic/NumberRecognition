@@ -42,11 +42,11 @@ def bench_k_means(estimator, name, benchmark_data):
                                       sample_size=sample_size)))
 
 
-bench_k_means(KMeans(init='k-means++', n_clusters=n_digits, n_init=10),
-              name="k-means++", benchmark_data=data)
+# bench_k_means(KMeans(init='k-means++', n_clusters=n_digits, n_init=10),
+#               name="k-means++", benchmark_data=data)
 
-bench_k_means(KMeans(init='random', n_clusters=n_digits, n_init=10),
-              name="random", benchmark_data=data)
+# bench_k_means(KMeans(init='random', n_clusters=n_digits, n_init=10),
+#               name="random", benchmark_data=data)
 
 
 print(82 * '_')
@@ -68,6 +68,8 @@ xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
 
 # Obtain labels for each point in mesh. Use last trained model.
 Z = kmeans.predict(np.c_[xx.ravel(), yy.ravel()])
+
+print(Z[100:110])
 
 # Put the result into a color plot
 Z = Z.reshape(xx.shape)
