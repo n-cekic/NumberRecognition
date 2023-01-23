@@ -29,6 +29,7 @@ class GUI:
         self.hw_label.move(15, 60)
         self.hw_label.setFixedSize(200, 200)
         self.hw_label.setAlignment(Qt.AlignCenter)
+        self.hw_label.setScaledContents(True)
 
         self.image_label = QLabel()
 
@@ -45,7 +46,3 @@ class GUI:
     def show(self):
         self.window.show()
         sys.exit(self.app.exec())
-
-
-gui = GUI()
-gui.show()
