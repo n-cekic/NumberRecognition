@@ -32,8 +32,8 @@ class GUI:
         piximg = QPixmap.fromImage(qimg)
         self.image_label.setPixmap(piximg)
 
-        def predict():
-            pass
+    def predict(self):
+        self.output_label.setText("<h1>9</h1>")
 
     def __init__(self):
         self.image_path = None
@@ -72,6 +72,15 @@ class GUI:
         self.image_label.setAlignment(Qt.AlignCenter)
         self.image_label.setFixedSize(280, 280)
         self.image_label.setScaledContents(True)
+        self.image_label.setStyleSheet("border: 1px solid black;")
+
+        self.output_label = QLabel("t")
+        self.output_label.setParent(self.window)
+        self.output_label.move(300, 150)
+        self.output_label.setFixedSize(90, 90)
+        self.output_label.setAlignment(Qt.AlignCenter)
+        self.output_label.setScaledContents(True)
+        self.output_label.setStyleSheet("border: 1px solid black;")
 
     def show(self):
         self.window.show()
