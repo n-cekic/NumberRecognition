@@ -3,15 +3,15 @@ from PIL import Image
 
 class ImagePreprocessing:
     def __init__(self, path=None):
-        self.image = None
+        self.image = path
 
         if path is not None:
             self.open(path)
 
-        self.new_width = 400
-        self.new_height = 400
+        self.new_width = 8
+        self.new_height = 8
         self.cutoff = 110
-        self.content_padding = 0.01
+        self.content_padding = 0.02
 
     def open(self, path):
         self.image = Image.open(path)

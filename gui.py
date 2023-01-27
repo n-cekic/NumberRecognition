@@ -21,16 +21,20 @@ class GUI:
         self.image_label.setPixmap(pixmap)
 
     def process_image(self):
-        if self.image_path is None:
+        if self.image_path is None or self.image_path == "":
             return
         image = IP()
         image.open(self.image_path)
-        image.pixelate()
         image.to_gray()
+        image.locate_content()
+        image.pixelate()
         qimg = ImageQt(image.image)
         piximg = QPixmap.fromImage(qimg)
-        print("AAAAAAA")
         self.image_label.setPixmap(piximg)
+
+    def predict(self):
+        # call predicting function from ML lib
+        self.output_label.setText("<h1>9</h1>")
 
     def __init__(self):
         self.image_path = None
@@ -57,18 +61,28 @@ class GUI:
         self.process_image_btn.setStyleSheet("text_align: center")
         self.process_image_btn.clicked.connect(self.process_image)
 
+        self.process_image_btn = QPushButton("Predict")
+        self.process_image_btn.setParent(self.window)
+        self.process_image_btn.setGeometry(300, 115, 90, 25)
+        self.process_image_btn.setStyleSheet("text_align: center")
+        self.process_image_btn.clicked.connect(self.predict)
+
         self.image_label = QLabel("<h1>Hello, World!</h1>")
         self.image_label.setParent(self.window)
         self.image_label.move(10, 40)
         self.image_label.setAlignment(Qt.AlignCenter)
         self.image_label.setFixedSize(280, 280)
         self.image_label.setScaledContents(True)
+        self.image_label.setStyleSheet("border: 1px solid black;")
+
+        self.output_label = QLabel("t")
+        self.output_label.setParent(self.window)
+        self.output_label.move(300, 150)
+        self.output_label.setFixedSize(90, 90)
+        self.output_label.setAlignment(Qt.AlignCenter)
+        self.output_label.setScaledContents(True)
+        self.output_label.setStyleSheet("border: 1px solid black;")
 
     def show(self):
         self.window.show()
         sys.exit(self.app.exec())
-
-
-gui = GUI()
-gui.show()
-gui.process_image()
