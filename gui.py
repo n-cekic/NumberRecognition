@@ -21,7 +21,7 @@ class GUI:
         self.image_label.setPixmap(pixmap)
 
     def process_image(self):
-        if self.image_path is None:
+        if self.image_path is None or self.image_path == "":
             return
         image = IP()
         image.open(self.image_path)
