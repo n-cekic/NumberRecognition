@@ -2,12 +2,19 @@ from PIL import Image
 
 
 class ImagePreprocessing:
-    def __init__(self, image: Image):
-        self.image = image
+    def __init__(self, path=None):
+        self.image = None
+
+        if path is not None:
+            self.open(path)
+
         self.new_width = 400
         self.new_height = 400
         self.cutoff = 110
         self.content_padding = 0.01
+
+    def open(self, path):
+        self.image = Image.open(path)
 
     def pixelate(self):
         self.image = self.image.resize((self.new_width, self.new_height))
