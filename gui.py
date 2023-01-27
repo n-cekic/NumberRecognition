@@ -33,6 +33,7 @@ class GUI:
         self.image_label.setPixmap(piximg)
 
     def predict(self):
+        # call predicting function from ML lib
         self.output_label.setText("<h1>9</h1>")
 
     def __init__(self):
