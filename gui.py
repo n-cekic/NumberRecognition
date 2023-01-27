@@ -25,12 +25,15 @@ class GUI:
             return
         image = IP()
         image.open(self.image_path)
-        image.pixelate()
         image.to_gray()
+        image.locate_content()
+        image.pixelate()
         qimg = ImageQt(image.image)
         piximg = QPixmap.fromImage(qimg)
-        print("AAAAAAA")
         self.image_label.setPixmap(piximg)
+
+        def predict():
+            pass
 
     def __init__(self):
         self.image_path = None
@@ -56,6 +59,12 @@ class GUI:
         self.process_image_btn.setGeometry(300, 80, 90, 25)
         self.process_image_btn.setStyleSheet("text_align: center")
         self.process_image_btn.clicked.connect(self.process_image)
+
+        self.process_image_btn = QPushButton("Predict")
+        self.process_image_btn.setParent(self.window)
+        self.process_image_btn.setGeometry(300, 115, 90, 25)
+        self.process_image_btn.setStyleSheet("text_align: center")
+        self.process_image_btn.clicked.connect(self.predict)
 
         self.image_label = QLabel("<h1>Hello, World!</h1>")
         self.image_label.setParent(self.window)
