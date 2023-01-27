@@ -9,6 +9,9 @@ class ImagePreprocessing:
         self.cutoff = 110
         self.content_padding = 0.01
 
+    def open(self, path):
+        self.image = Image.open(path)
+
     def pixelate(self):
         self.image = self.image.resize((self.new_width, self.new_height))
 
