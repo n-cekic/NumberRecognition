@@ -2,8 +2,12 @@ from PIL import Image
 
 
 class ImagePreprocessing:
-    def __init__(self, image: Image):
-        self.image = image
+    def __init__(self, path=None):
+        self.image = None
+
+        if path is not None:
+            self.open(path)
+
         self.new_width = 400
         self.new_height = 400
         self.cutoff = 110
