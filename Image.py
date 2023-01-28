@@ -1,9 +1,9 @@
-from PIL import Image
+from PIL import Image, ImageOps
 
 
 class ImagePreprocessing:
     def __init__(self, path=None):
-        self.image = path
+        self.image = None
 
         if path is not None:
             self.open(path)
@@ -11,7 +11,7 @@ class ImagePreprocessing:
         self.new_width = 8
         self.new_height = 8
         self.cutoff = 110
-        self.content_padding = 0.02
+        self.content_padding = 0.01
 
     def open(self, path):
         self.image = Image.open(path)
@@ -22,6 +22,9 @@ class ImagePreprocessing:
     def to_gray(self):
         self.image = self.image.convert("L")
 
+    def invert(self):
+        self.image = ImageOps.invert(self.image)
+
     def locate_content(self):
         top = 9999
         left = 9999
@@ -31,7 +34,6 @@ class ImagePreprocessing:
         for i in range(0, self.image.height):
             for j in range(0, self.image.width):
                 if self.image.getpixel((j, i)) > self.cutoff:
-                    print(self.image.getpixel((j, i)))
                     continue
                 if i < top:
                     top = i
