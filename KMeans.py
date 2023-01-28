@@ -39,9 +39,6 @@ def k_means():
             else:
                 cluster_2.append(data[p])
 
-        print(mean_1)
-        print(mean_2)
-
         mean_1 = find_centroid(cluster_1)
         mean_2 = find_centroid(cluster_2)
 

@@ -13,7 +13,6 @@ import sys
 class GUI:
     def set_message(self):
         path = self.text_field.text()
-        print(path)
         self.load_image(path)
 
     def load_image(self):
@@ -77,7 +76,7 @@ class GUI:
         self.image_label.setScaledContents(True)
         self.image_label.setStyleSheet("border: 1px solid black;")
 
-        self.output_label = QLabel("t")
+        self.output_label = QLabel()
         self.output_label.setParent(self.window)
         self.output_label.move(300, 150)
         self.output_label.setFixedSize(90, 90)

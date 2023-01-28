@@ -22,7 +22,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # Learn the digits on the train subset
 clf.fit(X_train, y_train)
-print("TRAINED")
 
 
 def predict(image_path):
@@ -32,7 +31,6 @@ def predict(image_path):
     image.locate_content()
     image.pixelate()
     image.invert()
-    print(8*"A")
     image = [int(x / 16) for x in image.image.getdata()]
     image = np.array(image)
 

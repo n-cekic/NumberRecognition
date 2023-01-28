@@ -30,7 +30,6 @@ class ImagePreprocessing:
         left = 9999
         right = -1
         bottom = -1
-        print(f"w:%s H:%s", self.image.width, self.image.width)
         for i in range(0, self.image.height):
             for j in range(0, self.image.width):
                 if self.image.getpixel((j, i)) > self.cutoff:
@@ -47,19 +46,13 @@ class ImagePreprocessing:
                 if j > right:
                     right = j
 
-        print(f"T: B: L: R:", top, bottom, left, right)
-
         width_padding = int(self.image.width * self.content_padding)
         height_padding = int(self.image.height * self.content_padding)
-
-        print(f"PH:%s PW:%s", height_padding, width_padding)
 
         top = top - height_padding if (top - height_padding) >= 0 else 0
         bottom = bottom + height_padding if (bottom + height_padding) < self.image.height else self.image.height
         left = left - width_padding if (left - width_padding) >= 0 else 0
         right = right + width_padding if (right + width_padding) < self.image.width else self.image.width
-
-        print(f"T: B: L: R:", top, bottom, left, right)
 
         self.image = self.image.crop((left, top, right, bottom))
 
