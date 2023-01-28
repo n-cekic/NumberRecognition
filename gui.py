@@ -3,6 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 
 from Image import ImagePreprocessing as IP
+import predict
 
 from PIL.ImageQt import ImageQt
 
@@ -34,7 +35,8 @@ class GUI:
 
     def predict(self):
         # call predicting function from ML lib
-        self.output_label.setText("<h1>9</h1>")
+        prediction = predict.predict(self.image_path)
+        self.output_label.setText(f"<h1>{prediction}</h1>")
 
     def __init__(self):
         self.image_path = None
